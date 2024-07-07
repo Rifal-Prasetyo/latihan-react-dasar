@@ -17,12 +17,12 @@ class LifeCycleComp extends Component {
     }
     componentDidMount() {
         console.log('componentDidMount');
-        setTimeout(() => {
+        // setTimeout(() => {
 
-            this.setState({
-                count: 2
-            });
-        }, 3000);
+        //     this.setState({
+        //         count: 2
+        //     });
+        // }, 3000);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -35,19 +35,33 @@ class LifeCycleComp extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('shouldComponentUpdate');
-        return true
+        console.group("shouldComponentUpdate");
+        // console.log('nextProps:', nextProps); // akan kosong karena tidak ada properti masuk
+        console.log('nextState:', nextState); // akan memuliki objek dengan isi state selanjutnya
+        console.log('currentState', this.state); // akan memuliki objek dengan isi state sekarang
+        if (nextState.count >= 5) {
+            return false;
+        }
+        // kasus seperti ini mempunyai keuntungan untuk optmasi. seperti loading Suatu big data dan sebagainya.
+        return true;
+
     }
 
     componentWillUnmount() {
         console.log('componentWillUnmount');
     }
 
+    changeCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        });
+    }
+
     render() {
         console.log('render');
         return (
             <div>
-                <button>Component Button {this.state.count}</button>
+                <button onClick={this.changeCount}>Component Button {this.state.count}</button>
             </div>
         )
     }
