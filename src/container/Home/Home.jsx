@@ -1,12 +1,13 @@
-import React, {Component} from "react"; 
+import React, { Component } from "react";
 // import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
 // import Product from "../Product/Product";
 import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
+import BlogSpot from "../BlogPost/BlogSpot";
 
 class Home extends Component {
 
     render() {
-        return(
+        return (
             <div>
                 {/* <p>Youtube Component</p>
                 <hr />
@@ -19,9 +20,13 @@ class Home extends Component {
                 <hr />
                 <Product/> */}
 
-                <p>LifeCycle Component</p>
+                {/* <p>LifeCycle Component</p>
                 <hr />
-                <LifeCycleComp/>
+                <LifeCycleComp/> */}
+
+                <p>Blog Spot</p>
+                <hr />
+                <BlogSpot />
             </div>
         )
     }
