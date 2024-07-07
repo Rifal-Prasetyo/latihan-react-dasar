@@ -1,19 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import HelloComponent from './components/HelloComponent';
-// import StateFullComponent from './container/StateFullComponent';
-
-
-// ReactJS episode 5 StateLess Component dan StateFull Component
-// StateLess(using functional compon or arrow function) component example
-// di folder components
-
-// StateFull Component(atau disebut Class Component)
-// example
-// di pindah di folder container
+import Home from './container/Home/Home';
 
 
 // cek folder components dan container
@@ -21,7 +10,7 @@ import HelloComponent from './components/HelloComponent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HelloComponent />
+    <Home />
   </React.StrictMode>
 );
 

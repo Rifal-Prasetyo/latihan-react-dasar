@@ -1,0 +1,10 @@
+.youtube-wrapper {
+    display: inline-block;
+    margin: 1rem;
+}
+
+.img-normal {
+    width: 20rem;
+    height: auto;
+    border-radius: 3px ;
+}
