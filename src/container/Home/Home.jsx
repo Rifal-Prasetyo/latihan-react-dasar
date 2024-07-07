@@ -1,8 +1,10 @@
 import React, {Component} from "react"; 
-import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
-import Product from "../Product/Product";
+// import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
+// import Product from "../Product/Product";
+import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
 
 class Home extends Component {
+
     render() {
         return(
             <div>
@@ -13,10 +15,13 @@ class Home extends Component {
                 <YouTubeComp title="Tutorial NextJS" desc="gimana yaj, katamu kamu mau jadi backend aja?"/>
                 <YouTubeComp/>  {/* tidak diberi props  */}
 
-                <p>Counter</p>
+                {/* <p>Counter</p>
                 <hr />
-                <Product/>
+                <Product/> */}
 
+                <p>LifeCycle Component</p>
+                <hr />
+                <LifeCycleComp/>
             </div>
         )
     }
