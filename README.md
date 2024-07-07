@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Channel tutorial
+Saya belajar Tutorial di Channel Prawito Hudoro [Prawito Hudoro](https://www.youtube.com/watch?v=_EatT18zjmw&list=PLU4DS8KR-LJ03qEsHn9zV4qdhcWtusBqb&index=5)
+
+Semoga Ilmunya bermanfaat dan menjadi berkah aamiin.
+
 ## Available Scripts
 
 In the project directory, you can run:
