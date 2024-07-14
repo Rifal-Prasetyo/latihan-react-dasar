@@ -14,7 +14,7 @@ class BlogSpot extends Component {
         //             posts: data
         //         });
         //     })
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('http://localhost:3004/posts')
             .then(res => {
                 this.setState({
                     posts: res.data
