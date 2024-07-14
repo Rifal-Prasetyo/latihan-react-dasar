@@ -6,6 +6,21 @@ class BlogSpot extends Component {
     state = {
         posts: []
     }
+
+    getPosts = () => {
+        axios.get('http://localhost:3004/posts')
+        .then(res => {
+            this.setState({
+                posts: res.data
+            });
+        })
+    }
+    handleRemovePost = (id) => {
+        axios.delete(`http://localhost:3004/posts/${id}`).then(res => {
+            this.getPosts();
+        })
+    }
+
     componentDidMount() {
         // fetch('https://jsonplaceholder.typicode.com/posts')
         //     .then(res => res.json())
@@ -14,12 +29,7 @@ class BlogSpot extends Component {
         //             posts: data
         //         });
         //     })
-        axios.get('http://localhost:3004/posts')
-            .then(res => {
-                this.setState({
-                    posts: res.data
-                });
-            })
+       this.getPosts();
 
     }
     render() {
@@ -30,7 +40,7 @@ class BlogSpot extends Component {
                     this.state.posts.map(post => {
                         return (
 
-                            <Post key={post.id} title={post.title} desc={post.body} />
+                            <Post key={post.id} data={post}  remove={this.handleRemovePost} />
                         )
                     })
                 }

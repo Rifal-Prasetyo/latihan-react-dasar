@@ -3,8 +3,9 @@ import './Post.css'
 const Post = (props) => {
     return (
         <div className="blog-spot-card">
-            <h1>{props.title}</h1>
-            <p>{props.desc}</p>
+            <h1>{props.data.title}</h1>
+            <p>{props.data.body}</p>
+            <button onClick={() => props.remove(props.data.id)}>Remove</button>
         </div>
     )
 }
