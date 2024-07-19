@@ -1,10 +1,16 @@
 import React, { Component, Fragment } from "react";
 import Post from "../../components/Post/Post";
 import axios from "axios";
+import './BlogSpot.css';
 class BlogSpot extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        formAddPost: {
+            id: 1,
+            title: '',
+            body: ''
+        }
     }
 
     getPosts = () => {
@@ -19,6 +25,19 @@ class BlogSpot extends Component {
         axios.delete(`http://localhost:3004/posts/${id}`).then(res => {
             this.getPosts();
         })
+    }
+
+    handleFormNewPostChange = (e) => {
+        // get cloning form state formAddPost
+        const formAddPostNew = {...this.state.formAddPost};
+
+        // set new value
+        formAddPostNew[e.target.name] = e.target.value;
+        this.setState({
+            formAddPost: formAddPostNew
+        });
+
+
     }
 
     componentDidMount() {
@@ -36,6 +55,13 @@ class BlogSpot extends Component {
         return (
             <Fragment>
                 <h1>Blog Spot</h1>
+                <div className="create-new-post">
+                    <label htmlFor="title">Judul</label>
+                    <input type="text" name="title" id="title" placeholder="masukkan judul" onChange={this.handleFormNewPostChange} />
+                    <label htmlFor="body">Content Body</label>
+                    <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormNewPostChange}></textarea>
+                    <button >Add</button>
+                </div>
                 {
                     this.state.posts.map(post => {
                         return (
