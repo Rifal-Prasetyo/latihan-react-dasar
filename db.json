@@ -1,10 +1,20 @@
 {
   "posts": [
     {
-      "id": "2",
+      "id": 2,
       "title": "another title",
       "views": 200,
       "body": "Coba saja"
+    },
+    {
+      "id": 312,
+      "title": "coba",
+      "body": "gimana yag"
+    },
+    {
+      "id": 313,
+      "title": "dsjdasd",
+      "body": "sdjfhsdfbndsf"
     }
   ],
   "comments": [

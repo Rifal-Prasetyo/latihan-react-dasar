@@ -14,7 +14,7 @@ class BlogSpot extends Component {
     }
 
     getPosts = () => {
-        axios.get('http://localhost:3004/posts')
+        axios.get('http://localhost:3004/posts?_sort=id,-views')
         .then(res => {
             this.setState({
                 posts: res.data
@@ -27,17 +27,26 @@ class BlogSpot extends Component {
         })
     }
 
+    postDataAPI = () => {
+        axios.post('http://localhost:3004/posts', this.state.formAddPost).then(res => console.log(res)
+        )
+    }
+
     handleFormNewPostChange = (e) => {
         // get cloning form state formAddPost
         const formAddPostNew = {...this.state.formAddPost};
 
         // set new value
+        //set id using timestamp 
+        formAddPostNew['id'] = new Date().getTime();
         formAddPostNew[e.target.name] = e.target.value;
         this.setState({
             formAddPost: formAddPostNew
         });
+    }
 
-
+    handleSubmit = () => {
+        this.postDataAPI();
     }
 
     componentDidMount() {
@@ -60,7 +69,7 @@ class BlogSpot extends Component {
                     <input type="text" name="title" id="title" placeholder="masukkan judul" onChange={this.handleFormNewPostChange} />
                     <label htmlFor="body">Content Body</label>
                     <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormNewPostChange}></textarea>
-                    <button >Add</button>
+                    <button onClick={this.handleSubmit} >Add</button>
                 </div>
                 {
                     this.state.posts.map(post => {
