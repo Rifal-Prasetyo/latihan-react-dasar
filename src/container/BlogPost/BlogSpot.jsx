@@ -7,10 +7,11 @@ class BlogSpot extends Component {
     state = {
         posts: [],
         formAddPost: {
-            id: 1,
+            id: '1',
             title: '',
             body: ''
-        }
+        },
+        isUpdate: false
     }
 
     getPosts = () => {
@@ -28,17 +29,42 @@ class BlogSpot extends Component {
     }
 
     postDataAPI = () => {
-        axios.post('http://localhost:3004/posts', this.state.formAddPost).then(res => console.log(res)
-        )
+        axios.post('http://localhost:3004/posts', this.state.formAddPost).then(res => {
+            console.log(res)
+            this.getPosts();
+            this.setState({
+                formAddPost: {
+                    id: '1',
+                    title: '',
+                    body: ''
+                },
+            })
+        })
+    }
+
+    putDataApi = () => {
+        axios.put(`http://localhost:3004/posts/${this.state.formAddPost.id}`, this.state.formAddPost).then(res => {
+            console.log(res);
+            this.getPosts();
+            this.setState({
+                isUpdate: false,
+                formAddPost: {
+                    id: '1',
+                    title: '',
+                    body: ''
+                },
+            })
+        })
     }
 
     handleFormNewPostChange = (e) => {
         // get cloning form state formAddPost
         const formAddPostNew = {...this.state.formAddPost};
-
         // set new value
         //set id using timestamp 
-        formAddPostNew['id'] = new Date().getTime();
+        if(!this.state.isUpdate) {
+            formAddPostNew['id'] = new Date().getTime().toString();
+        }
         formAddPostNew[e.target.name] = e.target.value;
         this.setState({
             formAddPost: formAddPostNew
@@ -46,7 +72,21 @@ class BlogSpot extends Component {
     }
 
     handleSubmit = () => {
-        this.postDataAPI();
+        if(this.state.isUpdate) {
+            this.putDataApi();
+        } else {
+            this.postDataAPI();
+        }
+    }
+
+    handleUpdate = (data) => {
+        this.setState({
+            formAddPost: data,
+            isUpdate: true
+        });
+        // axios.put(`http://localhost:3004/posts/${data.id}`, this.state.formAddPost).then(res => {
+            
+        // })
     }
 
     componentDidMount() {
@@ -66,16 +106,16 @@ class BlogSpot extends Component {
                 <h1>Blog Spot</h1>
                 <div className="create-new-post">
                     <label htmlFor="title">Judul</label>
-                    <input type="text" name="title" id="title" placeholder="masukkan judul" onChange={this.handleFormNewPostChange} />
+                    <input type="text" name="title" value={this.state.formAddPost.title} id="title" placeholder="masukkan judul" onChange={this.handleFormNewPostChange} />
                     <label htmlFor="body">Content Body</label>
-                    <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormNewPostChange}></textarea>
+                    <textarea name="body" id="body" cols="30" rows="10" value={this.state.formAddPost.body} onChange={this.handleFormNewPostChange}></textarea>
                     <button onClick={this.handleSubmit} >Add</button>
                 </div>
                 {
                     this.state.posts.map(post => {
                         return (
 
-                            <Post key={post.id} data={post}  remove={this.handleRemovePost} />
+                            <Post key={post.id} data={post}  remove={this.handleRemovePost} update={this.handleUpdate} />
                         )
                     })
                 }
