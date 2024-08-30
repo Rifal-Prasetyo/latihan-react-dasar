@@ -1,17 +1,16 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
-import Product from "../Product/Product";
-import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
-import BlogSpot from "../BlogPost/BlogSpot";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Product from "../pages/Product/Product";
+import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
+import BlogSpot from "../pages/BlogPost/BlogSpot";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 class Home extends Component {
 
     render() {
         return (
-            <BrowserRouter>
-{/*             
-            <div>
+            <Router>
+{/*             \
                 <p>Youtube Component</p>
                 <hr />
                 <YouTubeComp title="Tutorial Move On dari perempuan" desc="dimana kamu harus siap"/>
@@ -43,7 +42,7 @@ class Home extends Component {
             <Route path="/product" Component={Product} />
             <Route path="/lifecycle" Component={LifeCycleComp} />
             </Routes>
-            </BrowserRouter>
+            </Router>
         )
     }
 }
