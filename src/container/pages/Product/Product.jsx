@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from "react";
 import CardProduct from "../CardProduct/CardProduct";
-
+import { connect } from "react-redux";
 class Product extends Component {
     // state awal
-    state = {
-        count: 1,
-        name: 'Rifal dan '
-    }
+    // state = {
+    //     count: 1,
+    //     name: 'Rifal dan '
+    // }
 
     // methodnya
     handleCounterChange = (newValue) => {
@@ -20,13 +20,17 @@ class Product extends Component {
             <Fragment>
             <div>
                 <div>
-                <p>Angka dari parent: <span>{this.state.count}</span></p>
+                <p>Angka dari parent: <span>{this.props.count}</span></p>
                 </div>
-                <CardProduct onCounterChange={ (newValue) => this.handleCounterChange(newValue) } />
+                <CardProduct />
             </div>
             </Fragment>
         )
     }
 }
-
-export default Product;
+const mapStatetoProps = (state) => {
+    return {
+        count: state.totalOrder
+    }
+}
+export default connect(mapStatetoProps)(Product);

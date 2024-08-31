@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
 class LifeCycleComp extends Component {
 
     // REACT LIFE CYCLE METHOD FLOw
@@ -63,10 +63,16 @@ class LifeCycleComp extends Component {
             <div>
                 <h1>Halaman LifeCycle</h1>
                 <button onClick={this.changeCount}>Component Button {this.state.count}</button>
+                <hr/>
+                Total totalOrder: {this.props.totalOrder}
             </div>
         )
     }
 
 }
-
-export default LifeCycleComp;
+const mapStatetoProps = (state) => {
+    return {
+        totalOrder: state.totalOrder
+    }
+}
+export default connect(mapStatetoProps)(LifeCycleComp);

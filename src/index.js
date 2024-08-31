@@ -11,6 +11,18 @@ const globalState = {
   totalOrder: 0
 }
 const rootReducer = (state = globalState, action) => {
+  if(action.type === "ADD_ORDER") {
+    return {
+      ...state,
+      totalOrder: state.totalOrder + 1
+    }
+  }
+  if(action.type === "MINUS_ORDER") {
+    return {
+      ...state,
+      totalOrder: state.totalOrder - 1
+    }
+  }
   return state
 }
 const reduxStore = createStore(rootReducer);

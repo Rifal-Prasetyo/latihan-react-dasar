@@ -1,32 +1,36 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import Counter from "../../../components/Product/Counter";
-
+import { connect } from "react-redux";
 class CardProduct extends Component {
     // state awal
 
 
-    state = {
-        count: 1
-    }
+    // state = {
+    //     count: 1
+    // }
     // methodnya
-    handleCounterChange = (newValue) => {
-        this.props.onCounterChange(newValue);
+    // handleCounterChange = (newValue) => {
+    //     this.props.onCounterChange(newValue);
 
-        this.setState({
-            count: newValue
-        });
-    }
+    //     this.setState({
+    //         count: newValue
+    //     });
+    // }
 
 
 
     render() {
         return (
             <div>
-                <p>Angka: <span>{this.state.count}</span></p>
-                <Counter onCounterChange={ (newValue) => this.handleCounterChange(newValue) } />
+                <p>Angka: <span>{this.props.count}</span></p>
+                <Counter  />
             </div>
         )
     }
 }
-
-export default CardProduct;
+const mapStatetoProps = (state) => {
+    return {
+        count: state.totalOrder
+    }
+}
+export default connect(mapStatetoProps)(CardProduct);

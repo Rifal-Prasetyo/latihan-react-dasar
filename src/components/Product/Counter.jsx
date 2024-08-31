@@ -8,34 +8,34 @@ class Counter extends Component {
     //     count: 1,
     //     name: 'Rifal dan '
     // }
-    handleCounterChange = (newValue) => {
-        this.props.onCounterChange(newValue);
-    }
+    // handleCounterChange = (newValue) => {
+    //     this.props.onCounterChange(newValue);
+    // }
 
-    handlePlus = () => {
-        this.setState({
-            count: this.state.count + 1
-        }, () =>
-            this.handleCounterChange(this.state.count)
-        );
-    }
+    // handlePlus = () => {
+    //     this.setState({
+    //         count: this.state.count + 1
+    //     }, () =>
+    //         this.handleCounterChange(this.state.count)
+    //     );
+    // }
 
-    handleMinus = () => {
-        if(this.state.count > 0) {
-            this.setState({
-                count: this.state.count - 1
-            }, () =>
-                this.handleCounterChange(this.state.count)
-            );
-        }
-    }
+    // handleMinus = () => {
+    //     if(this.state.count > 0) {
+    //         this.setState({
+    //             count: this.state.count - 1
+    //         }, () =>
+    //             this.handleCounterChange(this.state.count)
+    //         );
+    //     }
+    // }
     render () {
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div>
-            <button onClick={this.handlePlus}>Tambah</button>
+            <button onClick={this.props.handlePlus}>Tambah</button>
             <p>Angka: <span>{this.props.count}</span></p>
-            <button onClick={this.handleMinus}>Kurang</button>
+            <button onClick={this.props.handleMinus}>Kurang</button>
         </div>
         )
     }
@@ -46,4 +46,11 @@ const mapStatetoProps = (state) => {
         count: state.totalOrder
     }
 }
-export default connect(mapStatetoProps)(Counter);
+
+const mapDispacthToProps = (dispatch) => {
+    return {
+        handlePlus: () => dispatch({type: "ADD_ORDER"}),
+        handleMinus: () => {dispatch({type: "MINUS_ORDER"})} 
+    }
+}
+export default connect(mapStatetoProps, mapDispacthToProps)(Counter);
