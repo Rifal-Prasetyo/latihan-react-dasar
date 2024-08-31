@@ -5,26 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import Home from './container/Home/Home';
 import {legacy_createStore} from 'redux';
 import { Provider } from 'react-redux';
+import rootReducer from './redux/reducer/globalReducer';
 const createStore = legacy_createStore;
 
-const globalState = {
-  totalOrder: 0
-}
-const rootReducer = (state = globalState, action) => {
-  if(action.type === "ADD_ORDER") {
-    return {
-      ...state,
-      totalOrder: state.totalOrder + 1
-    }
-  }
-  if(action.type === "MINUS_ORDER") {
-    return {
-      ...state,
-      totalOrder: state.totalOrder - 1
-    }
-  }
-  return state
-}
+
 const reduxStore = createStore(rootReducer);
 // cek folder components dan container
 
