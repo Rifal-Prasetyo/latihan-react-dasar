@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Counter extends Component {
 
 
-    state = {
-        count: 1,
-        name: 'Rifal dan '
-    }
+    // state = {
+    //     count: 1,
+    //     name: 'Rifal dan '
+    // }
     handleCounterChange = (newValue) => {
         this.props.onCounterChange(newValue);
     }
@@ -29,14 +30,20 @@ class Counter extends Component {
         }
     }
     render () {
+        console.log(this.props);
         return (
             <div>
             <button onClick={this.handlePlus}>Tambah</button>
+            <p>Angka: <span>{this.props.count}</span></p>
             <button onClick={this.handleMinus}>Kurang</button>
         </div>
         )
     }
 }
 
-
-export default Counter;
+const mapStatetoProps = (state) => {
+    return {
+        count: state.totalOrder
+    }
+}
+export default connect(mapStatetoProps)(Counter);
