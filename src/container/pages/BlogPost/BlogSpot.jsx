@@ -2,10 +2,12 @@ import React, { Component, Fragment } from "react";
 import Post from "../../../components/Post/Post";
 import axios from "axios";
 import './BlogSpot.css';
+import { NavigateContext } from "../../../container/pages/BlogPost/NavigateContext";
 class BlogSpot extends Component {
 
+   
     state = {
-        posts: [],
+        posts: [], 
         formAddPost: {
             id: '1',
             title: '',
@@ -13,7 +15,7 @@ class BlogSpot extends Component {
         },
         isUpdate: false
     }
-
+    static contextType = NavigateContext;
     getPosts = () => {
         axios.get('http://localhost:3004/posts?_sort=id,-views')
         .then(res => {
@@ -89,6 +91,10 @@ class BlogSpot extends Component {
         // })
     }
 
+    handleDetail = (id) => {
+        this.context(`/detail/${id}`);
+    }
+
     componentDidMount() {
         // fetch('https://jsonplaceholder.typicode.com/posts')
         //     .then(res => res.json())
@@ -115,7 +121,7 @@ class BlogSpot extends Component {
                     this.state.posts.map(post => {
                         return (
 
-                            <Post key={post.id} data={post}  remove={this.handleRemovePost} update={this.handleUpdate} />
+                            <Post key={post.id} data={post}  remove={this.handleRemovePost} update={this.handleUpdate} goDetail = {this.handleDetail}/>
                         )
                     })
                 }

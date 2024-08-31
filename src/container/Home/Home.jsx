@@ -3,7 +3,9 @@ import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
 import Product from "../pages/Product/Product";
 import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
 import BlogSpot from "../pages/BlogPost/BlogSpot";
+import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { NavigateProvider } from "../pages/BlogPost/NavigateContext";
 
 class Home extends Component {
 
@@ -37,11 +39,14 @@ class Home extends Component {
                 <Link to="/lifecycle">LifeCycle</Link>
                 <Link to="/">Home</Link>
             </div>
+            <NavigateProvider>
             <Routes>
             <Route path="/" exact Component={BlogSpot} />
+            <Route path="/detail/:id" Component={DetailPost} />
             <Route path="/product" Component={Product} />
             <Route path="/lifecycle" Component={LifeCycleComp} />
             </Routes>
+            </NavigateProvider>
             </Router>
         )
     }
