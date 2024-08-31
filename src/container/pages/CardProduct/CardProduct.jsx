@@ -22,15 +22,18 @@ class CardProduct extends Component {
     render() {
         return (
             <div>
-                <p>Angka: <span>{this.props.count}</span></p>
+                <p>Angka: <span>{0}</span></p>
                 <Counter  />
             </div>
         )
     }
 }
-const mapStatetoProps = (state) => {
-    return {
-        count: state.totalOrder
-    }
-}
-export default connect(mapStatetoProps)(CardProduct);
+// const mapStatetoProps = (state) => {
+//     return {
+//         count: state.totalOrder
+//     }
+// }
+// export default connect(mapStatetoProps)(CardProduct);
+
+// Menggunakan Context milik React bawaan
+export default CardProduct

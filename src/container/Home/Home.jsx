@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
 import Product from "../pages/Product/Product";
 import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
@@ -6,9 +6,16 @@ import BlogSpot from "../pages/BlogPost/BlogSpot";
 import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { NavigateProvider } from "../pages/BlogPost/NavigateContext";
+import { toHaveDisplayValue } from "@testing-library/jest-dom/matchers";
 
+
+export const RootContext = createContext();
+const Provider = RootContext.Provider;
 class Home extends Component {
 
+    state = {
+        totalOrder: 0
+    }
     render() {
         return (
             <Router>
@@ -33,6 +40,7 @@ class Home extends Component {
                 <BlogSpot />
 
             </div> */}
+            <Provider value={this.state}>
             <h1>Pilih Halaman kamu</h1>
             <div className="" style={{ display: 'flex', gap: '10px' }}>
                 <Link to="/product">Product</Link>
@@ -47,6 +55,7 @@ class Home extends Component {
             <Route path="/lifecycle" Component={LifeCycleComp} />
             </Routes>
             </NavigateProvider>
+            </Provider>
             </Router>
         )
     }

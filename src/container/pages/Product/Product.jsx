@@ -20,7 +20,7 @@ class Product extends Component {
             <Fragment>
             <div>
                 <div>
-                <p>Angka dari parent: <span>{this.props.count}</span></p>
+                <p>Angka dari parent: <span>{0}</span></p>
                 </div>
                 <CardProduct />
             </div>
@@ -28,9 +28,12 @@ class Product extends Component {
         )
     }
 }
-const mapStatetoProps = (state) => {
-    return {
-        count: state.totalOrder
-    }
-}
-export default connect(mapStatetoProps)(Product);
+// const mapStatetoProps = (state) => {
+//     return {
+//         count: state.totalOrder
+//     }
+// }
+// export default connect(mapStatetoProps)(Product);
+
+// Menggunakan Context milik React bawaan
+export default Product;

@@ -13,14 +13,20 @@ const reduxStore = createStore(rootReducer);
 // cek folder components dan container
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <Provider store={reduxStore}>
+//       <Home />
+//     </Provider>    
+//   </React.StrictMode>
+// );
+
+// menggunakan Context milik React bawaan
 root.render(
   <React.StrictMode>
-    <Provider store={reduxStore}>
       <Home />
-    </Provider>    
   </React.StrictMode>
 );
-
 
 
 // If you want to start measuring performance in your app, pass a function

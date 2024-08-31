@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ActionType from "../../redux/reducer/globalActionType";
-
+import { RootContext } from "../../container/Home/Home";
 class Counter extends Component {
 
 
@@ -33,25 +33,37 @@ class Counter extends Component {
     render () {
         // console.log(this.props);
         return (
-            <div>
-            <button onClick={this.props.handlePlus}>Tambah</button>
-            <p>Angka: <span>{this.props.count}</span></p>
-            <button onClick={this.props.handleMinus}>Kurang</button>
+            <RootContext.Consumer>
+                {
+                    value => {
+                        return (
+                            <div>
+            <button onClick={() => null}>Tambah</button>
+            <p>Angka: <span>{value.totalOrder}</span></p>
+            <button onClick={() => null}>Kurang</button>
         </div>
+                        )
+                    }
+                }
+            
+        </RootContext.Consumer>
         )
     }
 }
 
-const mapStatetoProps = (state) => {
-    return {
-        count: state.totalOrder
-    }
-}
+// const mapStatetoProps = (state) => {
+//     return {
+//         count: state.totalOrder
+//     }
+// }
 
-const mapDispacthToProps = (dispatch) => {
-    return {
-        handlePlus: () => dispatch({type: ActionType.ADD_ORDER}),
-        handleMinus: () => {dispatch({type: ActionType.MINUS_ORDER})} 
-    }
-}
-export default connect(mapStatetoProps, mapDispacthToProps)(Counter);
+// const mapDispacthToProps = (dispatch) => {
+//     return {
+//         handlePlus: () => dispatch({type: ActionType.ADD_ORDER}),
+//         handleMinus: () => {dispatch({type: ActionType.MINUS_ORDER})} 
+//     }
+// }
+// export default connect(mapStatetoProps, mapDispacthToProps)(Counter);
+
+// menggunakan Context milik React bawaan
+export default Counter
