@@ -1,6 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Counter from "../../../components/Product/Counter";
 import { connect } from "react-redux";
+import { RootContext } from "../../Home/Home";
 class CardProduct extends Component {
     // state awal
 
@@ -21,10 +22,19 @@ class CardProduct extends Component {
 
     render() {
         return (
-            <div>
-                <p>Angka: <span>{0}</span></p>
-                <Counter  />
-            </div>
+            <RootContext.Consumer>
+                {
+                    value => {
+                        return (
+                            <div>
+                                <p>Angka: <span>{value.state.totalOrder}</span></p>
+                                <Counter />
+                            </div>
+                        )
+                    }
+                }
+
+            </RootContext.Consumer>
         )
     }
 }

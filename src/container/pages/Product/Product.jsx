@@ -1,6 +1,7 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import CardProduct from "../CardProduct/CardProduct";
 import { connect } from "react-redux";
+import { RootContext } from "../../Home/Home";
 class Product extends Component {
     // state awal
     // state = {
@@ -17,14 +18,23 @@ class Product extends Component {
 
     render() {
         return (
-            <Fragment>
-            <div>
-                <div>
-                <p>Angka dari parent: <span>{0}</span></p>
-                </div>
-                <CardProduct />
-            </div>
-            </Fragment>
+            <RootContext.Consumer>
+                {
+                    value => {
+                        return (
+                            <Fragment>
+                                <div>
+                                    <div>
+                                        <p>Angka dari parent: <span>{value.state.totalOrder}</span></p>
+                                    </div>
+                                    <CardProduct />
+                                </div>
+                            </Fragment>
+                        )
+                    }
+                }
+
+            </RootContext.Consumer>
         )
     }
 }

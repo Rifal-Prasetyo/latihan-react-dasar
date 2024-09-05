@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { RootContext } from "../../Home/Home";
 class LifeCycleComp extends Component {
 
     // REACT LIFE CYCLE METHOD FLOw
@@ -44,7 +45,6 @@ class LifeCycleComp extends Component {
         }
         // kasus seperti ini mempunyai keuntungan untuk optmasi. seperti loading Suatu big data dan sebagainya.
         return true;
-
     }
 
     componentWillUnmount() {
@@ -60,19 +60,31 @@ class LifeCycleComp extends Component {
     render() {
         console.log('render');
         return (
-            <div>
-                <h1>Halaman LifeCycle</h1>
-                <button onClick={this.changeCount}>Component Button {this.state.count}</button>
-                <hr/>
-                Total totalOrder: {this.props.totalOrder}
-            </div>
+            <RootContext.Consumer>
+                {
+                    value => {
+                        return (
+                            <div>
+                                <h1>Halaman LifeCycle</h1>
+                                <button onClick={this.changeCount}>Component Button {this.state.count}</button>
+                                <hr />
+                                Total totalOrder: {value.state.totalOrder}
+                            </div>
+                        )
+                    }
+                }
+
+            </RootContext.Consumer>
         )
     }
 
 }
-const mapStatetoProps = (state) => {
-    return {
-        totalOrder: state.totalOrder
-    }
-}
-export default connect(mapStatetoProps)(LifeCycleComp);
+
+// Di komentar dlu karena ini redux 
+// const mapStatetoProps = (state) => {
+//     return {
+//         totalOrder: state.totalOrder
+//     }
+// }
+// export default connect(mapStatetoProps)(LifeCycleComp);
+export default LifeCycleComp;

@@ -16,6 +16,21 @@ class Home extends Component {
     state = {
         totalOrder: 0
     }
+
+    // ingin memiripkan dengann redux
+    dispatch = (action) => {
+        if(action.type === 'PLUS_ORDER') {
+            return this.setState({
+                totalOrder: this.state.totalOrder + 1
+            });
+        }
+        if(action.type === 'MINUS_ORDER') {
+            return this.setState({
+                totalOrder: this.state.totalOrder - 1
+            });
+        }
+
+    }
     render() {
         return (
             <Router>
@@ -40,7 +55,11 @@ class Home extends Component {
                 <BlogSpot />
 
             </div> */}
-            <Provider value={this.state}>
+            {/* Value boleh diisi apa saja contoh disini adalah diisi seperti Redux */}
+            <Provider value={{ 
+                state: this.state,
+                dispatch: this.dispatch
+             }}> 
             <h1>Pilih Halaman kamu</h1>
             <div className="" style={{ display: 'flex', gap: '10px' }}>
                 <Link to="/product">Product</Link>

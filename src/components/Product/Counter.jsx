@@ -30,7 +30,7 @@ class Counter extends Component {
     //         );
     //     }
     // }
-    render () {
+    render() {
         // console.log(this.props);
         return (
             <RootContext.Consumer>
@@ -38,15 +38,15 @@ class Counter extends Component {
                     value => {
                         return (
                             <div>
-            <button onClick={() => null}>Tambah</button>
-            <p>Angka: <span>{value.totalOrder}</span></p>
-            <button onClick={() => null}>Kurang</button>
-        </div>
+                                <button onClick={() => value.dispatch({type: "PLUS_ORDER"})}>Tambah</button>
+                                <p>Angka: <span>{value.state.totalOrder}</span></p>
+                                <button onClick={() => value.dispatch({type: "MINUS_ORDER"})}>Kurang</button>
+                            </div>
                         )
                     }
                 }
-            
-        </RootContext.Consumer>
+
+            </RootContext.Consumer>
         )
     }
 }
