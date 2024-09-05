@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import CardProduct from "../CardProduct/CardProduct";
-import { connect } from "react-redux";
-import { RootContext } from "../../Home/Home";
+import { GlobalConsumer } from "../../../context/context";
 class Product extends Component {
     // state awal
     // state = {
@@ -17,24 +16,16 @@ class Product extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
-            <RootContext.Consumer>
-                {
-                    value => {
-                        return (
-                            <Fragment>
-                                <div>
-                                    <div>
-                                        <p>Angka dari parent: <span>{value.state.totalOrder}</span></p>
-                                    </div>
-                                    <CardProduct />
-                                </div>
-                            </Fragment>
-                        )
-                    }
-                }
-
-            </RootContext.Consumer>
+            <Fragment>
+                <div>
+                    <div>
+                        <p>Angka dari parent: <span>{this.props.state.totalOrder}</span></p>
+                    </div>
+                    <CardProduct />
+                </div>
+            </Fragment>
         )
     }
 }
@@ -46,4 +37,4 @@ class Product extends Component {
 // export default connect(mapStatetoProps)(Product);
 
 // Menggunakan Context milik React bawaan
-export default Product;
+export default GlobalConsumer(Product);

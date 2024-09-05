@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import ActionType from "../../redux/reducer/globalActionType";
-import { RootContext } from "../../container/Home/Home";
+import { GlobalConsumer } from "../../context/context";
 class Counter extends Component {
 
 
@@ -33,20 +31,11 @@ class Counter extends Component {
     render() {
         // console.log(this.props);
         return (
-            <RootContext.Consumer>
-                {
-                    value => {
-                        return (
-                            <div>
-                                <button onClick={() => value.dispatch({type: "PLUS_ORDER"})}>Tambah</button>
-                                <p>Angka: <span>{value.state.totalOrder}</span></p>
-                                <button onClick={() => value.dispatch({type: "MINUS_ORDER"})}>Kurang</button>
-                            </div>
-                        )
-                    }
-                }
-
-            </RootContext.Consumer>
+            <div>
+                <button onClick={() => this.props.dispatch({ type: "PLUS_ORDER" })}>Tambah</button>
+                <p>Angka: <span>{this.props.state.totalOrder}</span></p>
+                <button onClick={() => this.props.dispatch({ type: "MINUS_ORDER" })}>Kurang</button>
+            </div>
         )
     }
 }
@@ -66,4 +55,4 @@ class Counter extends Component {
 // export default connect(mapStatetoProps, mapDispacthToProps)(Counter);
 
 // menggunakan Context milik React bawaan
-export default Counter
+export default GlobalConsumer(Counter);

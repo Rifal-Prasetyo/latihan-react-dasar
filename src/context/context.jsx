@@ -1,5 +1,4 @@
-import { render } from "@testing-library/react";
-import React, {createContext} from "react"
+import React, { createContext } from "react"
 
 
 const RootContext = createContext();
@@ -12,7 +11,7 @@ const GlobalProvider = (Children) => {
             state = {
                 totalOrder: 0
             }
-        
+
             // ingin memiripkan dengann redux
             dispatch = (action) => {
                 if (action.type === 'PLUS_ORDER') {
@@ -25,14 +24,14 @@ const GlobalProvider = (Children) => {
                         totalOrder: this.state.totalOrder - 1
                     });
                 }
-        
+
             }
             render() {
                 return (
                     <Provider value={
-                        {state: this.state, dispatch: this.dispatch}
+                        { state: this.state, dispatch: this.dispatch }
                     }>
-                        <Children {...this.props}/>
+                        <Children {...this.props} />
                     </Provider>
                 )
             }
@@ -41,5 +40,25 @@ const GlobalProvider = (Children) => {
 }
 
 // consumer // pemakai konteks
+const Consumer = RootContext.Consumer;
+export const GlobalConsumer = (Children) => {
+    return (
+        class ParentConsumer extends React.Component {
+            render() {
+                return (
+                    <Consumer>
+                        {
+                            value => {
+                                return (
+                                    <Children {...this.props} {...value} />
+                                )
+                            }
+                        }
+                    </Consumer>
+                )
+            }
+        }
 
+    )
+}
 export default GlobalProvider;

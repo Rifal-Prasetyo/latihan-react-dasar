@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { RootContext } from "../../Home/Home";
+import { GlobalConsumer } from "../../../context/context";
 class LifeCycleComp extends Component {
 
     // REACT LIFE CYCLE METHOD FLOw
@@ -57,23 +57,14 @@ class LifeCycleComp extends Component {
     }
 
     render() {
-        console.log('render');
+        console.log(this);
         return (
-            <RootContext.Consumer>
-                {
-                    value => {
-                        return (
-                            <div>
-                                <h1>Halaman LifeCycle</h1>
-                                <button onClick={this.changeCount}>Component Button {this.state.count}</button>
-                                <hr />
-                                Total totalOrder: {value.state.totalOrder}
-                            </div>
-                        )
-                    }
-                }
-
-            </RootContext.Consumer>
+            <div>
+                <h1>Halaman LifeCycle</h1>
+                <button onClick={this.changeCount}>Component Button {this.state.count}</button>
+                <hr />
+                Total totalOrder: {this.props.state.totalOrder}
+            </div>
         )
     }
 
@@ -86,4 +77,4 @@ class LifeCycleComp extends Component {
 //     }
 // }
 // export default connect(mapStatetoProps)(LifeCycleComp);
-export default LifeCycleComp;
+export default GlobalConsumer(LifeCycleComp);

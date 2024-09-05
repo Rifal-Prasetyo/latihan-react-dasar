@@ -1,12 +1,10 @@
-import React, { Component, createContext } from "react";
-import YouTubeComp from "../../components/YouTubeComp/YouTubeComp";
+import React, { Component } from "react";
 import Product from "../pages/Product/Product";
 import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
 import BlogSpot from "../pages/BlogPost/BlogSpot";
 import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { NavigateProvider } from "../pages/BlogPost/NavigateContext";
-import { toHaveDisplayValue } from "@testing-library/jest-dom/matchers";
 import GlobalProvider from "../../context/context";
 
 
