@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { RootContext } from "../../Home/Home";
 class LifeCycleComp extends Component {
 

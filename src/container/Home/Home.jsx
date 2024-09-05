@@ -7,34 +7,17 @@ import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { NavigateProvider } from "../pages/BlogPost/NavigateContext";
 import { toHaveDisplayValue } from "@testing-library/jest-dom/matchers";
+import GlobalProvider from "../../context/context";
 
 
-export const RootContext = createContext();
-const Provider = RootContext.Provider;
+
 class Home extends Component {
 
-    state = {
-        totalOrder: 0
-    }
-
-    // ingin memiripkan dengann redux
-    dispatch = (action) => {
-        if(action.type === 'PLUS_ORDER') {
-            return this.setState({
-                totalOrder: this.state.totalOrder + 1
-            });
-        }
-        if(action.type === 'MINUS_ORDER') {
-            return this.setState({
-                totalOrder: this.state.totalOrder - 1
-            });
-        }
-
-    }
+  
     render() {
         return (
             <Router>
-{/*             \
+                {/*             \
                 <p>Youtube Component</p>
                 <hr />
                 <YouTubeComp title="Tutorial Move On dari perempuan" desc="dimana kamu harus siap"/>
@@ -55,29 +38,26 @@ class Home extends Component {
                 <BlogSpot />
 
             </div> */}
-            {/* Value boleh diisi apa saja contoh disini adalah diisi seperti Redux */}
-            <Provider value={{ 
-                state: this.state,
-                dispatch: this.dispatch
-             }}> 
-            <h1>Pilih Halaman kamu</h1>
-            <div className="" style={{ display: 'flex', gap: '10px' }}>
-                <Link to="/product">Product</Link>
-                <Link to="/lifecycle">LifeCycle</Link>
-                <Link to="/">Home</Link>
-            </div>
-            <NavigateProvider>
-            <Routes>
-            <Route path="/" exact Component={BlogSpot} />
-            <Route path="/detail/:id" Component={DetailPost} />
-            <Route path="/product" Component={Product} />
-            <Route path="/lifecycle" Component={LifeCycleComp} />
-            </Routes>
-            </NavigateProvider>
-            </Provider>
+                {/* Value boleh diisi apa saja contoh disini adalah diisi seperti Redux */}
+
+                <h1>Pilih Halaman kamu</h1>
+                <div className="" style={{ display: 'flex', gap: '10px' }}>
+                    <Link to="/product">Product</Link>
+                    <Link to="/lifecycle">LifeCycle</Link>
+                    <Link to="/">Home</Link>
+                </div>
+                <NavigateProvider>
+                    <Routes>
+                        <Route path="/" exact Component={BlogSpot} />
+                        <Route path="/detail/:id" Component={DetailPost} />
+                        <Route path="/product" Component={Product} />
+                        <Route path="/lifecycle" Component={LifeCycleComp} />
+                    </Routes>
+                </NavigateProvider>
+
             </Router>
         )
     }
 }
 
-export default Home;
+export default GlobalProvider(Home);
