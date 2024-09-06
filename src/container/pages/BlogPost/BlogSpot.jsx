@@ -47,8 +47,7 @@ class BlogSpot extends Component {
     }
 
     postDataAPI = () => {
-        axios.post('http://localhost:3004/posts', this.state.formAddPost).then(res => {
-            console.log(res)
+        API.postNewsBlog(this.state.formAddPost).then(res => {
             this.getPosts();
             this.setState({
                 formAddPost: {
@@ -133,13 +132,13 @@ class BlogSpot extends Component {
                     <textarea name="body" id="body" cols="30" rows="10" value={this.state.formAddPost.body} onChange={this.handleFormNewPostChange}></textarea>
                     <button onClick={this.handleSubmit} >Add</button>
                 </div>
-                {
+                {/* {
                     this.state.comments.map((comment, index) => {
                         return (
                             <p>{comment.name} | {comment.email} | {comment.body} </p>
                         )
                     })
-                }
+                } */}
                 {
                     this.state.posts.map(post => {
                         return (
