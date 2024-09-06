@@ -41,8 +41,8 @@ class BlogSpot extends Component {
 
     }
     handleRemovePost = (id) => {
-        axios.delete(`http://localhost:3004/posts/${id}`).then(res => {
-            this.getPosts();
+        API.deleteNewsBlog(id).then(res => {
+            
         })
     }
 
@@ -60,16 +60,15 @@ class BlogSpot extends Component {
     }
 
     putDataApi = () => {
-        axios.put(`http://localhost:3004/posts/${this.state.formAddPost.id}`, this.state.formAddPost).then(res => {
-            console.log(res);
+        API.updateNewsblog(this.state.formAddPost, this.state.formAddPost.id).then(res => {
             this.getPosts();
             this.setState({
-                isUpdate: false,
                 formAddPost: {
                     id: '1',
                     title: '',
                     body: ''
                 },
+                isUpdate: false
             })
         })
     }
