@@ -6,6 +6,7 @@ import DetailPost from '../pages/BlogPost/DetailPost/DetailPost';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { NavigateProvider } from "../pages/BlogPost/NavigateContext";
 import GlobalProvider from "../../context/context";
+import Hooks from "../pages/Hooks/Hooks";
 
 
 
@@ -43,6 +44,7 @@ class Home extends Component {
                     <Link to="/product">Product</Link>
                     <Link to="/lifecycle">LifeCycle</Link>
                     <Link to="/">Home</Link>
+                    <Link to="/hooks">Hooks</Link>
                 </div>
                 <NavigateProvider>
                     <Routes>
@@ -50,6 +52,7 @@ class Home extends Component {
                         <Route path="/detail/:id" Component={DetailPost} />
                         <Route path="/product" Component={Product} />
                         <Route path="/lifecycle" Component={LifeCycleComp} />
+                        <Route path="/hooks" Component={Hooks} />
                     </Routes>
                 </NavigateProvider>
 
