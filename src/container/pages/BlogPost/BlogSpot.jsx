@@ -3,6 +3,7 @@ import Post from "../../../components/Post/Post";
 import axios from "axios";
 import './BlogSpot.css';
 import { NavigateContext } from "../../../container/pages/BlogPost/NavigateContext";
+import API from "../../../services";
 class BlogSpot extends Component {
 
    
@@ -13,16 +14,31 @@ class BlogSpot extends Component {
             title: '',
             body: ''
         },
+        comments: [],
         isUpdate: false
     }
     static contextType = NavigateContext;
     getPosts = () => {
-        axios.get('http://localhost:3004/posts?_sort=id,-views')
-        .then(res => {
+        API.getNewsBlog().then(res => {
             this.setState({
-                posts: res.data
+                posts: res
             });
         })
+        // axios.get('http://localhost:3004/posts?_sort=id,-views')
+        // .then(res => {
+        //     this.setState({
+        //         posts: res.data
+        //     });
+        // })
+    }
+    // example again using Global GET 
+    getComments = () => {
+        API.getComments().then(res => {
+            this.setState({
+                comments: res
+            })
+        });
+
     }
     handleRemovePost = (id) => {
         axios.delete(`http://localhost:3004/posts/${id}`).then(res => {
@@ -104,7 +120,7 @@ class BlogSpot extends Component {
         //         });
         //     })
        this.getPosts();
-
+       this.getComments();
     }
     render() {
         return (
@@ -117,6 +133,13 @@ class BlogSpot extends Component {
                     <textarea name="body" id="body" cols="30" rows="10" value={this.state.formAddPost.body} onChange={this.handleFormNewPostChange}></textarea>
                     <button onClick={this.handleSubmit} >Add</button>
                 </div>
+                {
+                    this.state.comments.map((comment, index) => {
+                        return (
+                            <p>{comment.name} | {comment.email} | {comment.body} </p>
+                        )
+                    })
+                }
                 {
                     this.state.posts.map(post => {
                         return (
